@@ -45,6 +45,9 @@ to fake it. 'git-revcount' will count the number of commits to the repository
 and use that as the build number whereas 'git-hash' will use the first 6 digits
 of the current HEAD's hash.
 
+Using 'svn-info' for the build number will case the plugin to query the local
+revision number using the 'svn info' command.
+
 The plugin creates a constant APP_VERSION that contains the version number of
 the application. Calling the +to_s+ method on APP_VERSION will result in a
 properly formatted version number. APP_VERSION also has +major+, +minor+,

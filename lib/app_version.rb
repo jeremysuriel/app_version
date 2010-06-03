@@ -39,6 +39,8 @@ class AppVersion
       @build = case args[:build]
                when 'svn'
                  get_build_from_subversion
+               when 'svn-info'
+                 get_build_from_subversion_info
                when 'git-revcount'
                  get_revcount_from_git
                when 'git-hash'
@@ -112,6 +114,12 @@ private
       #YAML.parse(`svn info`)['Revision'].value
       match = /(?:\d+:)?(\d+)M?S?/.match(`svnversion . -c`)
       match && match[1]
+    end
+  end
+  
+  def get_build_from_subversion_info
+    if File.exists?(".svn")
+      YAML.parse(`svn info`)['Revision'].value
     end
   end
 
